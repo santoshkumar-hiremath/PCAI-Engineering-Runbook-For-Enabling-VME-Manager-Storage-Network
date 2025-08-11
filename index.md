@@ -11,7 +11,9 @@ Before making any changes, please back up the network configuration on the Ubunt
 
 
 
-## On the Control Node:
+### On the Control Node:
+
+Markdown
 1. Create a backup of 60-mvm-mgmt.yaml
 
 sudo cp /etc/netplan/60-mvm-mgmt.yaml /etc/netplan/60-mvm-mgmt.yaml.org.bkp
@@ -35,8 +37,9 @@ sudo netplan get > /etc/netplan/netplanoutput.org.bkp
 
 
 
-##On the VME Manager VM:
+### On the VME Manager VM:
 
+Markdown
 1. Create a backup of 50-cloud-init.yaml
 
 Bash
