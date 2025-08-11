@@ -1,60 +1,30 @@
 ---
 ---
-
 This procedure outlines how to enable the storage network on the VME Manager VM. This will enable GLFS access for the VME Manager, allowing snapshots captured by the VME Manager to be stored on the shared GLFS storage.
 
-
-
-
 Before making any changes, please back up the network configuration on the Ubuntu-based Control Nodes and the Ubuntu-based VME Manager VM.
-
-
-
 
 ### On the Control Node:
 
 Markdown
 1. Create a backup of 60-mvm-mgmt.yaml
-
 sudo cp /etc/netplan/60-mvm-mgmt.yaml /etc/netplan/60-mvm-mgmt.yaml.org.bkp
-
-
-
-
 2. Create a backup of 01-base.yaml
-
 Bash
 sudo cp /etc/netplan/01-base.yaml /etc/netplan/01-base.yaml.org.bkp
-
-
-
-
 3. Save the active Netplan configuration output
-
 Bash
 sudo netplan get > /etc/netplan/netplanoutput.org.bkp
-
-
-
 
 ### On the VME Manager VM:
 
 Markdown
 1. Create a backup of 50-cloud-init.yaml
-
 Bash
 sudo cp /etc/netplan/50-cloud-init.yaml /etc/netplan/50-cloud-init.yaml.org.bkp
-
-
-
-
 2. Save the active Netplan configuration output
-
 Bash
 sudo netplan get > /etc/netplan/netplanoutput.org.bkp
-
-
-
 
 Now that you've backed up your existing configuration files, here are the steps to create the new netplan configuration file /etc/netplan/61-mvm-strg.yaml for storage network and update 01-base.yaml on the Control Nodes. No changes required in the 60-mvm-mgmt.yaml.
 
