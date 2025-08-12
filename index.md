@@ -88,37 +88,24 @@ sudo vi /etc/netplan/01-base.yaml
 
 
 Replace
-
+YAML
   vlans:
-
     VLAN110:
-
       addresses:
-
       - 172.28.2.101/21
-
       dhcp4: false
-
       id: 110
-
       link: bond1
-
       mtu: 9000
-
       routes:
-
       - to: 172.28.0.0/21
-
         via: 172.28.0.0
 
 With
-
+YAML
   vlans:
-
     VLAN110:
-
       id: 110
-
       link: bond1
 
  
@@ -155,28 +142,19 @@ Please do these changes on all the Control Nodes
  Now we will proceed with making the network changes on the VME Manager VM.
 
 
-
-
 Create /etc/netplan/01-storage-network.yaml
-
- 
 
       1. Open the new Netplan file for editing using nano or vi editor
 
 sudo vi /etc/netplan/01-storage-network.yaml
 
       2. Paste the following content into the editor.
-
+YAML
  network:
-
   version: 2
-
   ethernets:
-
     eth1:
-
       dhcp4: no
-
       addresses: [172.28.2.110/21]
 
  Note: Remember to change the addresses and routes IP details in the configuration to match your specific storage network requirements.
@@ -189,13 +167,10 @@ sudo chmod 600 /etc/netplan/01-storage-network.yaml
 
 
 
-
        2.  Apply the Netplan Configuration
 
  
-
 After updating these files, you need to apply the changes for them to take effect. It's highly recommended to use netplan try first to avoid locking yourself out of the network.
-
  
 
        1. Test the configuration
@@ -211,7 +186,6 @@ After updating these files, you need to apply the changes for them to take effec
             sudo netplan apply
 
 After netplan apply, your network interfaces should be reconfigured according to these new settings.
-
        
 
        3.  Create Route and Bridge for VME Manager
@@ -224,19 +198,10 @@ Login to HPE VM Essentials GUI through a browser and create a network route.
 
 
 
-
- 
-
-
-
-
        2. Fill the required details as shown in the figure and click on “Add Network Router”
 
 
-
-
-
-        3. Add a storage network interface to the VME Manager VM.
+    3. Add a storage network interface to the VME Manager VM.
 
 Go to Infrastructure --> Compute --> Virtual Machines
 
@@ -302,12 +267,14 @@ sudo vi /etc/apt/sources.list.d/ubuntu.sources
 
 Paste the below content into the file:
 
+YAML
 Types: deb
 URIs: http://archive.ubuntu.com/ubuntu/
 Suites: noble noble-updates noble-security
 Components: main restricted universe multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
+YAML
 Types: deb
 URIs: http://security.ubuntu.com/ubuntu/
 Suites: noble-security
